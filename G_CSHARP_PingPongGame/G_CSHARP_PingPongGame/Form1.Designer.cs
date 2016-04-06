@@ -74,7 +74,7 @@
             // ball
             // 
             this.ball.Image = ((System.Drawing.Image)(resources.GetObject("ball.Image")));
-            this.ball.Location = new System.Drawing.Point(139, 95);
+            this.ball.Location = new System.Drawing.Point(78, 99);
             this.ball.Name = "ball";
             this.ball.Size = new System.Drawing.Size(20, 20);
             this.ball.TabIndex = 1;
