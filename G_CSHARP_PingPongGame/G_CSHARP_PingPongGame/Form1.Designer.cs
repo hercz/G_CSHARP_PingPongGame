@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.playground = new System.Windows.Forms.Panel();
+            this.levelCounter_lbl = new System.Windows.Forms.Label();
+            this.level_lbl = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.point_lbl = new System.Windows.Forms.Label();
             this.score_lbl = new System.Windows.Forms.Label();
             this.ball = new System.Windows.Forms.PictureBox();
             this.racket = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.level_lbl = new System.Windows.Forms.Label();
-            this.levelCounter_lbl = new System.Windows.Forms.Label();
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).BeginInit();
@@ -58,6 +58,33 @@
             this.playground.Name = "playground";
             this.playground.Size = new System.Drawing.Size(465, 369);
             this.playground.TabIndex = 0;
+            // 
+            // levelCounter_lbl
+            // 
+            this.levelCounter_lbl.AutoSize = true;
+            this.levelCounter_lbl.Location = new System.Drawing.Point(198, 9);
+            this.levelCounter_lbl.Name = "levelCounter_lbl";
+            this.levelCounter_lbl.Size = new System.Drawing.Size(13, 13);
+            this.levelCounter_lbl.TabIndex = 6;
+            this.levelCounter_lbl.Text = "0";
+            // 
+            // level_lbl
+            // 
+            this.level_lbl.AutoSize = true;
+            this.level_lbl.Location = new System.Drawing.Point(155, 9);
+            this.level_lbl.Name = "level_lbl";
+            this.level_lbl.Size = new System.Drawing.Size(36, 13);
+            this.level_lbl.TabIndex = 5;
+            this.level_lbl.Text = "Level:";
+            // 
+            // progressBar
+            // 
+            this.progressBar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.progressBar.Location = new System.Drawing.Point(293, 9);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(160, 13);
+            this.progressBar.TabIndex = 4;
+            this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
             // 
             // point_lbl
             // 
@@ -99,32 +126,6 @@
             // 
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // progressBar
-            // 
-            this.progressBar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.progressBar.Location = new System.Drawing.Point(217, 9);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(205, 13);
-            this.progressBar.TabIndex = 4;
-            // 
-            // level_lbl
-            // 
-            this.level_lbl.AutoSize = true;
-            this.level_lbl.Location = new System.Drawing.Point(155, 9);
-            this.level_lbl.Name = "level_lbl";
-            this.level_lbl.Size = new System.Drawing.Size(36, 13);
-            this.level_lbl.TabIndex = 5;
-            this.level_lbl.Text = "Level:";
-            // 
-            // levelCounter_lbl
-            // 
-            this.levelCounter_lbl.AutoSize = true;
-            this.levelCounter_lbl.Location = new System.Drawing.Point(198, 9);
-            this.levelCounter_lbl.Name = "levelCounter_lbl";
-            this.levelCounter_lbl.Size = new System.Drawing.Size(13, 13);
-            this.levelCounter_lbl.TabIndex = 6;
-            this.levelCounter_lbl.Text = "0";
             // 
             // Form1
             // 

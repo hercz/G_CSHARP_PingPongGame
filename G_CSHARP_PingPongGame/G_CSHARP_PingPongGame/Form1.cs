@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,19 +32,42 @@ namespace G_CSHARP_PingPongGame
 
         }
 
+        public void IncreaseSpeed()
+        {
+            speed_top += 5;
+            speed_left += 5; 
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            racket.Left = Cursor.Position.X - (racket.Width / 2);
+            racket.Left = Cursor.Position.X - (racket.Width/2);
             ball.Left += speed_left;
             ball.Top += speed_top;
 
-            if (ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left && ball.Right <= racket.Right)
+            if (ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
+                ball.Right <= racket.Right)
             {
-                speed_top += 2;
-                speed_left += 2;
-
+                if (points == 3)
+                {
+                    levelCounter_lbl.Text = "Easy!";
+                   IncreaseSpeed();
+                }
+                if (points == 6)
+                {
+                    levelCounter_lbl.Text = "Normal!";
+                    IncreaseSpeed();
+                }
+                if (points == 9)
+                {
+                    levelCounter_lbl.Text = "You're crazy!";
+                    IncreaseSpeed();
+                }
+                if (points == 12)
+                {
+                    levelCounter_lbl.Text = "LEGEND!!!";
+                    IncreaseSpeed();
+                }
                 speed_top = -speed_top;
-
                 points += 1;
                 point_lbl.Text = points.ToString();
             }
@@ -62,7 +87,7 @@ namespace G_CSHARP_PingPongGame
             {
                 timer1.Enabled = false;
                 MessageBox.Show("Game Over!", "Game Over",
-              MessageBoxButtons.OK);
+                    MessageBoxButtons.OK);
             }
         }
 
@@ -83,9 +108,12 @@ namespace G_CSHARP_PingPongGame
                 levelCounter = 0;
                 levelCounter_lbl.Text = "0";
                 timer1.Enabled = true;
-
-
             }
+        }
+
+        private void progressBar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
