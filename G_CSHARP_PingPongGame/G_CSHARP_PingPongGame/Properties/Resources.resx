@@ -114,4 +114,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Form1_timer1_Tick_" xml:space="preserve">
+    <value>
+For a new Game, press ENTER
+</value>
+  </data>
 </root>

@@ -29,7 +29,6 @@ namespace G_CSHARP_PingPongGame
             this.TopMost = true;
             this.Bounds = Screen.PrimaryScreen.Bounds;
             racket.Top = playground.Bottom - (playground.Bottom/10);
-
         }
 
         public void IncreaseSpeed()
@@ -86,8 +85,13 @@ namespace G_CSHARP_PingPongGame
             if (ball.Bottom >= playground.Bottom)
             {
                 timer1.Enabled = false;
-                MessageBox.Show("Game Over!", "Game Over",
+                Cursor.Show();
+                MessageBox.Show("Game Over!\nYour score: "+ points+ 
+                    "\nPress ENTER if you want to play again," +
+                    "\nor press ESC to exit.", "Game Over",
                     MessageBoxButtons.OK);
+
+                    
             }
         }
 
@@ -95,7 +99,7 @@ namespace G_CSHARP_PingPongGame
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Application.ExitThread();
             }
             if (e.KeyCode == Keys.Enter)
             {
@@ -108,6 +112,7 @@ namespace G_CSHARP_PingPongGame
                 levelCounter = 0;
                 levelCounter_lbl.Text = "0";
                 timer1.Enabled = true;
+                Cursor.Hide();
             }
         }
 
