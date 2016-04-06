@@ -101,6 +101,17 @@ namespace G_CSHARP_PingPongGame
             {
                 Application.ExitThread();
             }
+            if (e.KeyCode == Keys.Space)
+            {
+                if (timer1.Enabled)
+                {
+                    timer1.Enabled = false;
+                }
+                else
+                {
+                    timer1.Enabled = true;
+                }
+            }
             if (e.KeyCode == Keys.Enter)
             {
                 ball.Top = 50;
@@ -111,8 +122,9 @@ namespace G_CSHARP_PingPongGame
                 point_lbl.Text = "0";
                 levelCounter = 0;
                 levelCounter_lbl.Text = "0";
-                timer1.Enabled = true;
                 Cursor.Hide();
+                timer1.Enabled = true;
+                
             }
         }
 
