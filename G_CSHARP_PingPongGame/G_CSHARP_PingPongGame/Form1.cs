@@ -81,7 +81,7 @@ namespace G_CSHARP_PingPongGame
                 points = 0;
                 point_lbl.Text = "0";
                 levelCounter = 0;
-                //levelCounter_lbl.Text = "0";
+                levelCounter_lbl.Text = "0";
                 timer1.Enabled = true;
 
 

@@ -36,6 +36,9 @@
             this.ball = new System.Windows.Forms.PictureBox();
             this.racket = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.level_lbl = new System.Windows.Forms.Label();
+            this.levelCounter_lbl = new System.Windows.Forms.Label();
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).BeginInit();
@@ -43,6 +46,9 @@
             // 
             // playground
             // 
+            this.playground.Controls.Add(this.levelCounter_lbl);
+            this.playground.Controls.Add(this.level_lbl);
+            this.playground.Controls.Add(this.progressBar);
             this.playground.Controls.Add(this.point_lbl);
             this.playground.Controls.Add(this.score_lbl);
             this.playground.Controls.Add(this.ball);
@@ -50,7 +56,7 @@
             this.playground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playground.Location = new System.Drawing.Point(0, 0);
             this.playground.Name = "playground";
-            this.playground.Size = new System.Drawing.Size(284, 261);
+            this.playground.Size = new System.Drawing.Size(465, 369);
             this.playground.TabIndex = 0;
             // 
             // point_lbl
@@ -94,11 +100,37 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // progressBar
+            // 
+            this.progressBar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.progressBar.Location = new System.Drawing.Point(217, 9);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(205, 13);
+            this.progressBar.TabIndex = 4;
+            // 
+            // level_lbl
+            // 
+            this.level_lbl.AutoSize = true;
+            this.level_lbl.Location = new System.Drawing.Point(155, 9);
+            this.level_lbl.Name = "level_lbl";
+            this.level_lbl.Size = new System.Drawing.Size(36, 13);
+            this.level_lbl.TabIndex = 5;
+            this.level_lbl.Text = "Level:";
+            // 
+            // levelCounter_lbl
+            // 
+            this.levelCounter_lbl.AutoSize = true;
+            this.levelCounter_lbl.Location = new System.Drawing.Point(198, 9);
+            this.levelCounter_lbl.Name = "levelCounter_lbl";
+            this.levelCounter_lbl.Size = new System.Drawing.Size(13, 13);
+            this.levelCounter_lbl.TabIndex = 6;
+            this.levelCounter_lbl.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(465, 369);
             this.Controls.Add(this.playground);
             this.Name = "Form1";
             this.Text = "PingPongGame";
@@ -119,6 +151,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label score_lbl;
         private System.Windows.Forms.Label point_lbl;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label levelCounter_lbl;
+        private System.Windows.Forms.Label level_lbl;
     }
 }
 
