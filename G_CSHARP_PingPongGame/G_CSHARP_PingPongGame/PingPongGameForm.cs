@@ -1,29 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region File Header
+/*[ Compilation unit ----------------------------------------------------------
+
+   Component       : PingPongGame form file
+
+   Name            : Code_Gangstaz
+
+   Last Author     : Herczku Misi
+
+   Language        : C#
+
+   Creation Date   :  2016.04.07.
+
+   Description     : This is the file where we store the program initialiser, and event handlers
+
+
+               Copyright (C) Codecool Kft 2016 All Rights Reserved
+
+-----------------------------------------------------------------------------*/
+/*] END */
+
+#endregion File Header
+
+#region Used Namespaces ---------------------------------------------------------------------------
+using System;
 using System.Windows.Forms;
+#endregion Used Namespaces ------------------------------------------------------------------------
 
 namespace G_CSHARP_PingPongGame
 {
-    public partial class Form1 : Form
+    public partial class PingPongGameForm : Form
     {
+        #region Internal Types ------------------------------------------------------------------------
         private int speed_left = 4;
         private int speed_top = 4;
-        private int points = 0;
-        private int levelCounter = 0;
+        private int points;
+        private int levelCounter;
+        #endregion Internal Types ---------------------------------------------------------------------
 
-        public Form1()
+        public PingPongGameForm()
         {
             InitializeComponent();
-            timer1.Enabled = true;
+            pingPongTimer.Enabled = true;
             gameOver_lbl.Hide();
             gift_pb.Hide();
             Cursor.Hide();
@@ -95,7 +112,7 @@ namespace G_CSHARP_PingPongGame
             }
             if (ball.Bottom >= playground.Bottom)
             {
-                timer1.Enabled = false;
+                pingPongTimer.Enabled = false;
                 gameOver_lbl.Show();
                 gameOver_lbl.Text = "Game Over!\r\nScore: " + points + "\nYour gift is in the background!:)\r\nFor a new game press ENTER" +
                                     "\r\nOr if you want to EXIT, press ESC.";
@@ -111,13 +128,13 @@ namespace G_CSHARP_PingPongGame
             }
             if (e.KeyCode == Keys.Space)
             {
-                if (timer1.Enabled)
+                if (pingPongTimer.Enabled)
                 {
-                    timer1.Enabled = false;
+                    pingPongTimer.Enabled = false;
                 }
                 else
                 {
-                    timer1.Enabled = true;
+                    pingPongTimer.Enabled = true;
                 }
             }
             if (e.KeyCode == Keys.Enter)
@@ -133,7 +150,7 @@ namespace G_CSHARP_PingPongGame
                 levelCounter = 0;
                 levelCounter_lbl.Text = "0";
                 Cursor.Hide();
-                timer1.Enabled = true;
+                pingPongTimer.Enabled = true;
                 progressBar.Value = 0;
             }
         }

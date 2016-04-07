@@ -1,6 +1,6 @@
 ﻿namespace G_CSHARP_PingPongGame
 {
-    partial class Form1
+    partial class PingPongGameForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PingPongGameForm));
             this.playground = new System.Windows.Forms.Panel();
             this.gameOver_lbl = new System.Windows.Forms.Label();
             this.percent_lbl = new System.Windows.Forms.Label();
@@ -40,8 +40,8 @@
             this.score_lbl = new System.Windows.Forms.Label();
             this.ball = new System.Windows.Forms.PictureBox();
             this.racket = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gift_pb = new System.Windows.Forms.PictureBox();
+            this.pingPongTimer = new System.Windows.Forms.Timer(this.components);
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).BeginInit();
@@ -151,11 +151,6 @@
             this.racket.TabIndex = 0;
             this.racket.TabStop = false;
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // gift_pb
             // 
             this.gift_pb.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -166,13 +161,18 @@
             this.gift_pb.TabIndex = 9;
             this.gift_pb.TabStop = false;
             // 
-            // Form1
+            // pingPongTimer
+            // 
+            this.pingPongTimer.Interval = 1;
+            this.pingPongTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // PingPongGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 402);
             this.Controls.Add(this.playground);
-            this.Name = "Form1";
+            this.Name = "PingPongGameForm";
             this.Text = "PingPongGame";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.playground.ResumeLayout(false);
@@ -189,7 +189,7 @@
         private System.Windows.Forms.Panel playground;
         private System.Windows.Forms.PictureBox racket;
         private System.Windows.Forms.PictureBox ball;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer pingPongTimer;
         private System.Windows.Forms.Label score_lbl;
         private System.Windows.Forms.Label point_lbl;
         private System.Windows.Forms.ProgressBar progressBar;
