@@ -83,16 +83,13 @@ namespace G_CSHARP_PingPongGame
                 pingPongTimer.Enabled = !pingPongTimer.Enabled;
             }
             if (e.KeyCode == Keys.Enter)
-            {
-                
+            {                
                 StartGame();
             }
         }
         #endregion FormEvents ------------------------------------------------------------------------
 
         #region ProcessMethods ------------------------------------------------------------------------
-
-
         private void BallStartMoving()
         {
             racket.Left = Cursor.Position.X - racket.Width / 2;
@@ -120,7 +117,7 @@ namespace G_CSHARP_PingPongGame
             Points += 1;
             point_lbl.Text = Points.ToString();
             progressBar.Increment(25);
-            percent_lbl.Text = progressBar.Value + "%";
+            percent_lbl.Text = progressBar.Value + @"%";
         }
 
         private void ResetProgressBar()
@@ -137,10 +134,15 @@ namespace G_CSHARP_PingPongGame
         public void StartGame()
         {
             pingPongTimer.Enabled = true;
+            ball.Top = 50;
+            ball.Left = 50;
             SpeedLeft = 4;
             SpeedTop = 4;
             Points = 0;
             Level = 0;
+            point_lbl.Text = @"0";
+            levelCounter_lbl.Text = @"0";
+            progressBar.Value = 0;
             gameOver_lbl.Hide();
             gift_pb.Hide();
             Cursor.Hide();
@@ -169,8 +171,8 @@ namespace G_CSHARP_PingPongGame
 
         #region private Types ------------------------------------------------------------------------
 
-        public int SpeedLeft { get; private set; } = 4;
-        public int SpeedTop { get; private set; } = 4;
+        public int SpeedLeft { get; private set; }
+        public int SpeedTop { get; private set; }
         public int Points { get; private set; }
         public int Level { get; private set; }
 
