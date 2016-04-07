@@ -82,9 +82,9 @@
             this.progressBar.BackColor = System.Drawing.Color.RoyalBlue;
             this.progressBar.Location = new System.Drawing.Point(293, 9);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(160, 13);
+            this.progressBar.Size = new System.Drawing.Size(100, 13);
             this.progressBar.TabIndex = 4;
-            this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
+            this.progressBar.Click += new System.EventHandler(this.timer1_Tick);
             // 
             // point_lbl
             // 

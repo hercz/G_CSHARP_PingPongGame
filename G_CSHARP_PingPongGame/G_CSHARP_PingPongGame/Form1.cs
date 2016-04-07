@@ -19,7 +19,7 @@ namespace G_CSHARP_PingPongGame
         private int speed_top = 4;
         private int points = 0;
         private int levelCounter = 0;
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -49,27 +49,34 @@ namespace G_CSHARP_PingPongGame
                 if (points == 3)
                 {
                     levelCounter_lbl.Text = "Easy!";
-                   IncreaseSpeed();
+                    IncreaseSpeed();
+                    ResetProgressBar();
+
                 }
                 if (points == 6)
                 {
                     levelCounter_lbl.Text = "Normal!";
                     IncreaseSpeed();
+                    ResetProgressBar();
                 }
                 if (points == 9)
                 {
                     levelCounter_lbl.Text = "You're crazy!";
                     IncreaseSpeed();
+                    ResetProgressBar();
                 }
                 if (points == 12)
                 {
                     levelCounter_lbl.Text = "LEGEND!!!";
                     IncreaseSpeed();
+                    ResetProgressBar();
                 }
                 speed_top = -speed_top;
                 points += 1;
                 point_lbl.Text = points.ToString();
+                progressBar.Increment(34);
             }
+
             if (ball.Left <= playground.Left)
             {
                 speed_left = -speed_left;
@@ -90,8 +97,6 @@ namespace G_CSHARP_PingPongGame
                     "\nPress ENTER if you want to play again," +
                     "\nor press ESC to exit.", "Game Over",
                     MessageBoxButtons.OK);
-
-                    
             }
         }
 
@@ -124,13 +129,19 @@ namespace G_CSHARP_PingPongGame
                 levelCounter_lbl.Text = "0";
                 Cursor.Hide();
                 timer1.Enabled = true;
-                
+                progressBar.Value = 0;
             }
         }
 
-        private void progressBar_Click(object sender, EventArgs e)
+        private void ResetProgressBar()
         {
-
+            progressBar.Maximum = 100;
+            for (int k = 0; k <= 100; k++)
+            {
+                progressBar.Value = k;
+                if (progressBar.Maximum == k)
+                    progressBar.Value = 0;
+            }
         }
     }
 }
