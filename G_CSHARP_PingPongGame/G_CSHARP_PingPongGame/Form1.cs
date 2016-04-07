@@ -19,7 +19,7 @@ namespace G_CSHARP_PingPongGame
         private int speed_top = 4;
         private int points = 0;
         private int levelCounter = 0;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -33,8 +33,8 @@ namespace G_CSHARP_PingPongGame
 
         public void IncreaseSpeed()
         {
-            speed_top += 5;
-            speed_left += 5; 
+            speed_top += 1;
+            speed_left += 1; 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -42,30 +42,30 @@ namespace G_CSHARP_PingPongGame
             racket.Left = Cursor.Position.X - (racket.Width/2);
             ball.Left += speed_left;
             ball.Top += speed_top;
-
+            
             if (ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
                 ball.Right <= racket.Right)
             {
-                if (points == 3)
+                if (points == 2)
                 {
                     levelCounter_lbl.Text = "Easy!";
                     IncreaseSpeed();
                     ResetProgressBar();
 
                 }
-                if (points == 6)
+                if (points == 4)
                 {
                     levelCounter_lbl.Text = "Normal!";
                     IncreaseSpeed();
                     ResetProgressBar();
                 }
-                if (points == 9)
+                if (points == 6)
                 {
                     levelCounter_lbl.Text = "You're crazy!";
                     IncreaseSpeed();
                     ResetProgressBar();
                 }
-                if (points == 12)
+                if (points == 8)
                 {
                     levelCounter_lbl.Text = "LEGEND!!!";
                     IncreaseSpeed();
@@ -74,7 +74,8 @@ namespace G_CSHARP_PingPongGame
                 speed_top = -speed_top;
                 points += 1;
                 point_lbl.Text = points.ToString();
-                progressBar.Increment(34);
+                progressBar.Increment(50);
+                percent_lbl.Text = progressBar.Value.ToString() + "%";
             }
 
             if (ball.Left <= playground.Left)

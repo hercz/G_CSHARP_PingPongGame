@@ -39,6 +39,7 @@
             this.ball = new System.Windows.Forms.PictureBox();
             this.racket = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.percent_lbl = new System.Windows.Forms.Label();
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).BeginInit();
@@ -46,6 +47,8 @@
             // 
             // playground
             // 
+            this.playground.BackColor = System.Drawing.Color.Transparent;
+            this.playground.Controls.Add(this.percent_lbl);
             this.playground.Controls.Add(this.levelCounter_lbl);
             this.playground.Controls.Add(this.level_lbl);
             this.playground.Controls.Add(this.progressBar);
@@ -80,9 +83,9 @@
             // progressBar
             // 
             this.progressBar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.progressBar.Location = new System.Drawing.Point(293, 9);
+            this.progressBar.Location = new System.Drawing.Point(1200, 9);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(100, 13);
+            this.progressBar.Size = new System.Drawing.Size(150, 30);
             this.progressBar.TabIndex = 4;
             this.progressBar.Click += new System.EventHandler(this.timer1_Tick);
             // 
@@ -127,6 +130,16 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // percent_lbl
+            // 
+            this.percent_lbl.AutoSize = true;
+            this.percent_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.percent_lbl.Location = new System.Drawing.Point(1150, 9);
+            this.percent_lbl.Name = "percent_lbl";
+            this.percent_lbl.Size = new System.Drawing.Size(32, 20);
+            this.percent_lbl.TabIndex = 7;
+            this.percent_lbl.Text = "0%";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +168,7 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label levelCounter_lbl;
         private System.Windows.Forms.Label level_lbl;
+        private System.Windows.Forms.Label percent_lbl;
     }
 }
 
