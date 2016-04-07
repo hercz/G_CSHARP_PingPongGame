@@ -113,7 +113,7 @@
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(150, 30);
             this.progressBar.TabIndex = 4;
-            this.progressBar.Click += new System.EventHandler(this.timer1_Tick);
+            this.progressBar.Click += new System.EventHandler(this.PingPongTimer_Tick);
             // 
             // point_lbl
             // 
@@ -164,7 +164,7 @@
             // pingPongTimer
             // 
             this.pingPongTimer.Interval = 1;
-            this.pingPongTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            this.pingPongTimer.Tick += new System.EventHandler(this.PingPongTimer_Tick);
             // 
             // PingPongGameForm
             // 
@@ -174,7 +174,7 @@
             this.Controls.Add(this.playground);
             this.Name = "PingPongGameForm";
             this.Text = "PingPongGame";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PingPongGame_KeyDown);
             this.playground.ResumeLayout(false);
             this.playground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();

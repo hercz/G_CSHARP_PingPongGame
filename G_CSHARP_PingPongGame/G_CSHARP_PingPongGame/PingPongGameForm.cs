@@ -1,4 +1,5 @@
 ﻿#region File Header
+
 /*[ Compilation unit ----------------------------------------------------------
 
    Component       : PingPongGame form file
@@ -22,105 +23,39 @@
 #endregion File Header
 
 #region Used Namespaces ---------------------------------------------------------------------------
+
 using System;
 using System.Windows.Forms;
+
 #endregion Used Namespaces ------------------------------------------------------------------------
 
 namespace G_CSHARP_PingPongGame
 {
     public partial class PingPongGameForm : Form
     {
-        #region Internal Types ------------------------------------------------------------------------
-        private int speed_left = 4;
-        private int speed_top = 4;
-        private int points;
-        private int levelCounter;
-        #endregion Internal Types ---------------------------------------------------------------------
-
         public PingPongGameForm()
         {
             InitializeComponent();
-            pingPongTimer.Enabled = true;
-            gameOver_lbl.Hide();
-            gift_pb.Hide();
-            Cursor.Hide();
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.TopMost = true;
-            this.Bounds = Screen.PrimaryScreen.Bounds;
-            racket.Top = playground.Bottom - (playground.Bottom/10);
-
+            StartGame();
         }
+        #region BallPositionProperties ------------------------------------------------------------------------
+        private bool BallFallDown => ball.Bottom >= playground.Bottom;
 
-        public void IncreaseSpeed()
+        private bool BallInTop => ball.Top <= playground.Top;
+
+        private bool BallInSides => ball.Left <= playground.Left || ball.Right >= playground.Right;
+
+        private bool BallInPlayGround => ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
+                                         ball.Right <= racket.Right;
+        #endregion BallPositionProperties ------------------------------------------------------------------------
+
+        #region FormEvents ------------------------------------------------------------------------
+        private void PingPongTimer_Tick(object sender, EventArgs e)
         {
-            speed_top += 1;
-            speed_left += 1; 
+            TimerEvent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            racket.Left = Cursor.Position.X - (racket.Width/2);
-            ball.Left += speed_left;
-            ball.Top += speed_top;
-            
-            if (ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
-                ball.Right <= racket.Right)
-            {
-                if (points == 4)
-                {
-                    levelCounter_lbl.Text = "Easy!";
-                    IncreaseSpeed();
-                    ResetProgressBar();
-
-                }
-                if (points == 8)
-                {
-                    levelCounter_lbl.Text = "Normal!";
-                    IncreaseSpeed();
-                    ResetProgressBar();
-                }
-                if (points == 12)
-                {
-                    levelCounter_lbl.Text = "You're crazy!";
-                    IncreaseSpeed();
-                    ResetProgressBar();
-                }
-                if (points == 16)
-                {
-                    levelCounter_lbl.Text = "LEGEND!!!";
-                    IncreaseSpeed();
-                    ResetProgressBar();
-                }
-                speed_top = -speed_top;
-                points += 1;
-                point_lbl.Text = points.ToString();
-                progressBar.Increment(25);
-                percent_lbl.Text = progressBar.Value.ToString() + "%";
-            }
-
-            if (ball.Left <= playground.Left)
-            {
-                speed_left = -speed_left;
-            }
-            if (ball.Right >= playground.Right)
-            {
-                speed_left = -speed_left;
-            }
-            if (ball.Top <= playground.Top)
-            {
-                speed_top = -speed_top;
-            }
-            if (ball.Bottom >= playground.Bottom)
-            {
-                pingPongTimer.Enabled = false;
-                gameOver_lbl.Show();
-                gameOver_lbl.Text = "Game Over!\r\nScore: " + points + "\nYour gift is in the background!:)\r\nFor a new game press ENTER" +
-                                    "\r\nOr if you want to EXIT, press ESC.";
-                gift_pb.Show();
-            }
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void PingPongGame_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -128,42 +63,130 @@ namespace G_CSHARP_PingPongGame
             }
             if (e.KeyCode == Keys.Space)
             {
-                if (pingPongTimer.Enabled)
-                {
-                    pingPongTimer.Enabled = false;
-                }
-                else
-                {
-                    pingPongTimer.Enabled = true;
-                }
+                pingPongTimer.Enabled = !pingPongTimer.Enabled;
             }
             if (e.KeyCode == Keys.Enter)
             {
-                gameOver_lbl.Hide();
-                gift_pb.Hide();
-                ball.Top = 50;
-                ball.Left = 50;
-                speed_left = 4;
-                speed_top = 4;
-                points = 0;
-                point_lbl.Text = "0";
-                levelCounter = 0;
-                levelCounter_lbl.Text = "0";
-                Cursor.Hide();
-                pingPongTimer.Enabled = true;
-                progressBar.Value = 0;
+                StartGame();
             }
+        }
+        #endregion FormEvents ------------------------------------------------------------------------
+
+        #region ProcessMethods ------------------------------------------------------------------------
+
+        public void TimerEvent()
+        {
+            BallStartMoving();
+            if (BallInPlayGround)
+            {
+                LevelUpProcess();
+            }
+
+            if (BallInSides)
+            {
+                SpeedLeft = -SpeedLeft;
+            }
+            if (BallInTop)
+            {
+                SpeedTop = -SpeedTop;
+            }
+            if (BallFallDown)
+            {
+                GameOver();
+            }
+        }
+
+        private void BallStartMoving()
+        {
+            racket.Left = Cursor.Position.X - racket.Width / 2;
+            ball.Left += SpeedLeft;
+            ball.Top += SpeedTop;
+        }
+
+        private void LevelUpProcess()
+        {
+            if (Points == 4)
+            {
+                levelCounter_lbl.Text = "Easy!";
+                IncreaseSpeed();
+                ResetProgressBar();
+            }
+            if (Points == 8)
+            {
+                levelCounter_lbl.Text = "Normal!";
+                IncreaseSpeed();
+                ResetProgressBar();
+            }
+            if (Points == 12)
+            {
+                levelCounter_lbl.Text = "You're crazy!";
+                IncreaseSpeed();
+                ResetProgressBar();
+            }
+            if (Points == 16)
+            {
+                levelCounter_lbl.Text = "LEGEND!!!";
+                IncreaseSpeed();
+                ResetProgressBar();
+            }
+            PointCounter();
+        }
+
+        private void PointCounter()
+        {
+            SpeedTop = -SpeedTop;
+            Points += 1;
+            point_lbl.Text = Points.ToString();
+            progressBar.Increment(25);
+            percent_lbl.Text = progressBar.Value + "%";
         }
 
         private void ResetProgressBar()
         {
             progressBar.Maximum = 100;
-            for (int k = 0; k <= 100; k++)
+            for (var k = 0; k <= 100; k++)
             {
                 progressBar.Value = k;
                 if (progressBar.Maximum == k)
                     progressBar.Value = 0;
             }
         }
+
+        public void StartGame()
+        {
+            pingPongTimer.Enabled = true;
+            gameOver_lbl.Hide();
+            gift_pb.Hide();
+            Cursor.Hide();
+            FormBorderStyle = FormBorderStyle.None;
+            TopMost = true;
+            Bounds = Screen.PrimaryScreen.Bounds;
+            racket.Top = playground.Bottom - playground.Bottom / 10;
+        }
+
+        public void IncreaseSpeed()
+        {
+            SpeedTop += 1;
+            SpeedLeft += 1;
+        }
+
+        public void GameOver()
+        {
+            var gamOverStringStart = "Game Over!\nScore: ";
+            var gamoverStringEnd = "\nYour gift is in the picture :)\nNew game: press ENTER\nExit: press ESC";
+            pingPongTimer.Enabled = false;
+            gameOver_lbl.Show();
+            gameOver_lbl.Text = gamOverStringStart + Points + gamoverStringEnd;
+            gift_pb.Show();
+        }
+        #endregion ProcessMethods ------------------------------------------------------------------------
+
+        #region private Types ------------------------------------------------------------------------
+
+        public int SpeedLeft { get; private set; } = 4;
+        public int SpeedTop { get; private set; } = 4;
+        public int Points { get; private set; }
+
+        #endregion private Types ---------------------------------------------------------------------
     }
 }
