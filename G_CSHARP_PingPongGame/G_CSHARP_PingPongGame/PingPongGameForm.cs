@@ -175,7 +175,6 @@ namespace G_CSHARP_PingPongGame
         public int SpeedTop { get; private set; }
         public int Points { get; private set; }
         public int Level { get; private set; }
-
         #endregion private Types ---------------------------------------------------------------------
     }
 }
