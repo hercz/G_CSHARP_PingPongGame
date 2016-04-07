@@ -24,6 +24,7 @@ namespace G_CSHARP_PingPongGame
         {
             InitializeComponent();
             timer1.Enabled = true;
+            gameOver_lbl.Hide();
             Cursor.Hide();
             this.FormBorderStyle = FormBorderStyle.None;
             this.TopMost = true;
@@ -93,11 +94,9 @@ namespace G_CSHARP_PingPongGame
             if (ball.Bottom >= playground.Bottom)
             {
                 timer1.Enabled = false;
-                Cursor.Show();
-                MessageBox.Show("Game Over!\nYour score: "+ points+ 
-                    "\nPress ENTER if you want to play again," +
-                    "\nor press ESC to exit.", "Game Over",
-                    MessageBoxButtons.OK);
+                gameOver_lbl.Show();
+                gameOver_lbl.Text = "Game Over!\r\nScore: " + points + "\r\nFor a new game press ENTER" +
+                                    "\r\nOr if you want to EXIT, press ESC.";
             }
         }
 
@@ -120,6 +119,7 @@ namespace G_CSHARP_PingPongGame
             }
             if (e.KeyCode == Keys.Enter)
             {
+                gameOver_lbl.Hide();
                 ball.Top = 50;
                 ball.Left = 50;
                 speed_left = 4;

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.playground = new System.Windows.Forms.Panel();
+            this.percent_lbl = new System.Windows.Forms.Label();
             this.levelCounter_lbl = new System.Windows.Forms.Label();
             this.level_lbl = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
@@ -39,7 +40,7 @@
             this.ball = new System.Windows.Forms.PictureBox();
             this.racket = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.percent_lbl = new System.Windows.Forms.Label();
+            this.gameOver_lbl = new System.Windows.Forms.Label();
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).BeginInit();
@@ -48,6 +49,7 @@
             // playground
             // 
             this.playground.BackColor = System.Drawing.Color.Transparent;
+            this.playground.Controls.Add(this.gameOver_lbl);
             this.playground.Controls.Add(this.percent_lbl);
             this.playground.Controls.Add(this.levelCounter_lbl);
             this.playground.Controls.Add(this.level_lbl);
@@ -61,6 +63,16 @@
             this.playground.Name = "playground";
             this.playground.Size = new System.Drawing.Size(465, 369);
             this.playground.TabIndex = 0;
+            // 
+            // percent_lbl
+            // 
+            this.percent_lbl.AutoSize = true;
+            this.percent_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.percent_lbl.Location = new System.Drawing.Point(1150, 9);
+            this.percent_lbl.Name = "percent_lbl";
+            this.percent_lbl.Size = new System.Drawing.Size(32, 20);
+            this.percent_lbl.TabIndex = 7;
+            this.percent_lbl.Text = "0%";
             // 
             // levelCounter_lbl
             // 
@@ -130,15 +142,16 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // percent_lbl
+            // gameOver_lbl
             // 
-            this.percent_lbl.AutoSize = true;
-            this.percent_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.percent_lbl.Location = new System.Drawing.Point(1150, 9);
-            this.percent_lbl.Name = "percent_lbl";
-            this.percent_lbl.Size = new System.Drawing.Size(32, 20);
-            this.percent_lbl.TabIndex = 7;
-            this.percent_lbl.Text = "0%";
+            this.gameOver_lbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gameOver_lbl.AutoSize = true;
+            this.gameOver_lbl.Location = new System.Drawing.Point(201, 130);
+            this.gameOver_lbl.Name = "gameOver_lbl";
+            this.gameOver_lbl.Size = new System.Drawing.Size(64, 26);
+            this.gameOver_lbl.TabIndex = 8;
+            this.gameOver_lbl.Text = "Game Over!\r\nScore:";
+            this.gameOver_lbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
@@ -169,6 +182,7 @@
         private System.Windows.Forms.Label levelCounter_lbl;
         private System.Windows.Forms.Label level_lbl;
         private System.Windows.Forms.Label percent_lbl;
+        private System.Windows.Forms.Label gameOver_lbl;
     }
 }
 
