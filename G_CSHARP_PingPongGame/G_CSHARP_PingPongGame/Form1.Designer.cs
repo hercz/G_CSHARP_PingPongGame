@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.playground = new System.Windows.Forms.Panel();
+            this.gameOver_lbl = new System.Windows.Forms.Label();
             this.percent_lbl = new System.Windows.Forms.Label();
             this.levelCounter_lbl = new System.Windows.Forms.Label();
             this.level_lbl = new System.Windows.Forms.Label();
@@ -40,10 +41,11 @@
             this.ball = new System.Windows.Forms.PictureBox();
             this.racket = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.gameOver_lbl = new System.Windows.Forms.Label();
+            this.gift_pb = new System.Windows.Forms.PictureBox();
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gift_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // playground
@@ -58,11 +60,23 @@
             this.playground.Controls.Add(this.score_lbl);
             this.playground.Controls.Add(this.ball);
             this.playground.Controls.Add(this.racket);
+            this.playground.Controls.Add(this.gift_pb);
             this.playground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playground.Location = new System.Drawing.Point(0, 0);
             this.playground.Name = "playground";
-            this.playground.Size = new System.Drawing.Size(465, 369);
+            this.playground.Size = new System.Drawing.Size(671, 402);
             this.playground.TabIndex = 0;
+            // 
+            // gameOver_lbl
+            // 
+            this.gameOver_lbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gameOver_lbl.AutoSize = true;
+            this.gameOver_lbl.Location = new System.Drawing.Point(311, 56);
+            this.gameOver_lbl.Name = "gameOver_lbl";
+            this.gameOver_lbl.Size = new System.Drawing.Size(64, 26);
+            this.gameOver_lbl.TabIndex = 8;
+            this.gameOver_lbl.Text = "Game Over!\r\nScore:";
+            this.gameOver_lbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // percent_lbl
             // 
@@ -142,22 +156,21 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // gameOver_lbl
+            // gift_pb
             // 
-            this.gameOver_lbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.gameOver_lbl.AutoSize = true;
-            this.gameOver_lbl.Location = new System.Drawing.Point(201, 130);
-            this.gameOver_lbl.Name = "gameOver_lbl";
-            this.gameOver_lbl.Size = new System.Drawing.Size(64, 26);
-            this.gameOver_lbl.TabIndex = 8;
-            this.gameOver_lbl.Text = "Game Over!\r\nScore:";
-            this.gameOver_lbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.gift_pb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gift_pb.Image = ((System.Drawing.Image)(resources.GetObject("gift_pb.Image")));
+            this.gift_pb.Location = new System.Drawing.Point(292, 99);
+            this.gift_pb.Name = "gift_pb";
+            this.gift_pb.Size = new System.Drawing.Size(98, 93);
+            this.gift_pb.TabIndex = 9;
+            this.gift_pb.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 369);
+            this.ClientSize = new System.Drawing.Size(671, 402);
             this.Controls.Add(this.playground);
             this.Name = "Form1";
             this.Text = "PingPongGame";
@@ -166,6 +179,7 @@
             this.playground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gift_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,6 +197,7 @@
         private System.Windows.Forms.Label level_lbl;
         private System.Windows.Forms.Label percent_lbl;
         private System.Windows.Forms.Label gameOver_lbl;
+        private System.Windows.Forms.PictureBox gift_pb;
     }
 }
 

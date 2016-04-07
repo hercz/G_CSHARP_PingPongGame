@@ -25,11 +25,13 @@ namespace G_CSHARP_PingPongGame
             InitializeComponent();
             timer1.Enabled = true;
             gameOver_lbl.Hide();
+            gift_pb.Hide();
             Cursor.Hide();
             this.FormBorderStyle = FormBorderStyle.None;
             this.TopMost = true;
             this.Bounds = Screen.PrimaryScreen.Bounds;
             racket.Top = playground.Bottom - (playground.Bottom/10);
+
         }
 
         public void IncreaseSpeed()
@@ -47,26 +49,26 @@ namespace G_CSHARP_PingPongGame
             if (ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
                 ball.Right <= racket.Right)
             {
-                if (points == 2)
+                if (points == 4)
                 {
                     levelCounter_lbl.Text = "Easy!";
                     IncreaseSpeed();
                     ResetProgressBar();
 
                 }
-                if (points == 4)
+                if (points == 8)
                 {
                     levelCounter_lbl.Text = "Normal!";
                     IncreaseSpeed();
                     ResetProgressBar();
                 }
-                if (points == 6)
+                if (points == 12)
                 {
                     levelCounter_lbl.Text = "You're crazy!";
                     IncreaseSpeed();
                     ResetProgressBar();
                 }
-                if (points == 8)
+                if (points == 16)
                 {
                     levelCounter_lbl.Text = "LEGEND!!!";
                     IncreaseSpeed();
@@ -75,7 +77,7 @@ namespace G_CSHARP_PingPongGame
                 speed_top = -speed_top;
                 points += 1;
                 point_lbl.Text = points.ToString();
-                progressBar.Increment(50);
+                progressBar.Increment(25);
                 percent_lbl.Text = progressBar.Value.ToString() + "%";
             }
 
@@ -95,8 +97,9 @@ namespace G_CSHARP_PingPongGame
             {
                 timer1.Enabled = false;
                 gameOver_lbl.Show();
-                gameOver_lbl.Text = "Game Over!\r\nScore: " + points + "\r\nFor a new game press ENTER" +
+                gameOver_lbl.Text = "Game Over!\r\nScore: " + points + "\nYour gift is in the background!:)\r\nFor a new game press ENTER" +
                                     "\r\nOr if you want to EXIT, press ESC.";
+                gift_pb.Show();
             }
         }
 
@@ -120,6 +123,7 @@ namespace G_CSHARP_PingPongGame
             if (e.KeyCode == Keys.Enter)
             {
                 gameOver_lbl.Hide();
+                gift_pb.Hide();
                 ball.Top = 50;
                 ball.Left = 50;
                 speed_left = 4;
