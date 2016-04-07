@@ -45,15 +45,39 @@ namespace G_CSHARP_PingPongGame
 
         private bool BallInSides => ball.Left <= playground.Left || ball.Right >= playground.Right;
 
-        private bool BallInRacket => ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
+        private bool BallInPlayGround => ball.Bottom >= racket.Top && ball.Bottom <= racket.Bottom && ball.Left >= racket.Left &&
                                          ball.Right <= racket.Right;
         #endregion BallPositionProperties ------------------------------------------------------------------------
 
         #region FormEvents ------------------------------------------------------------------------
         private void PingPongTimer_Tick(object sender, EventArgs e)
         {
+            TimerEvent();
+        }
+
+        private void PingPongGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Application.ExitThread();
+            }
+            if (e.KeyCode == Keys.Space)
+            {
+                pingPongTimer.Enabled = !pingPongTimer.Enabled;
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                StartGame();
+            }
+        }
+        #endregion FormEvents ------------------------------------------------------------------------
+
+        #region ProcessMethods ------------------------------------------------------------------------
+
+        public void TimerEvent()
+        {
             BallStartMoving();
-            if (BallInRacket)
+            if (BallInPlayGround)
             {
                 LevelUpProcess();
             }
@@ -72,27 +96,6 @@ namespace G_CSHARP_PingPongGame
             }
         }
 
-        private void PingPongGame_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                Application.ExitThread();
-            }
-            if (e.KeyCode == Keys.Space)
-            {
-                pingPongTimer.Enabled = !pingPongTimer.Enabled;
-            }
-            if (e.KeyCode == Keys.Enter)
-            {
-                
-                StartGame();
-            }
-        }
-        #endregion FormEvents ------------------------------------------------------------------------
-
-        #region ProcessMethods ------------------------------------------------------------------------
-
-
         private void BallStartMoving()
         {
             racket.Left = Cursor.Position.X - racket.Width / 2;
@@ -102,14 +105,29 @@ namespace G_CSHARP_PingPongGame
 
         private void LevelUpProcess()
         {
-            
-            string[] levelNames = {"0","Easy", "Normal", "You're crazy!", "LEGEND!!!"};
-            if (Points % 4 == 0 && Points <=16)
+            if (Points == 4)
             {
-                levelCounter_lbl.Text = levelNames[Level];
+                levelCounter_lbl.Text = "Easy!";
                 IncreaseSpeed();
                 ResetProgressBar();
-                Level += 1;
+            }
+            if (Points == 8)
+            {
+                levelCounter_lbl.Text = "Normal!";
+                IncreaseSpeed();
+                ResetProgressBar();
+            }
+            if (Points == 12)
+            {
+                levelCounter_lbl.Text = "You're crazy!";
+                IncreaseSpeed();
+                ResetProgressBar();
+            }
+            if (Points == 16)
+            {
+                levelCounter_lbl.Text = "LEGEND!!!";
+                IncreaseSpeed();
+                ResetProgressBar();
             }
             PointCounter();
         }
@@ -137,10 +155,6 @@ namespace G_CSHARP_PingPongGame
         public void StartGame()
         {
             pingPongTimer.Enabled = true;
-            SpeedLeft = 4;
-            SpeedTop = 4;
-            Points = 0;
-            Level = 0;
             gameOver_lbl.Hide();
             gift_pb.Hide();
             Cursor.Hide();
@@ -172,7 +186,6 @@ namespace G_CSHARP_PingPongGame
         public int SpeedLeft { get; private set; } = 4;
         public int SpeedTop { get; private set; } = 4;
         public int Points { get; private set; }
-        public int Level { get; private set; }
 
         #endregion private Types ---------------------------------------------------------------------
     }
